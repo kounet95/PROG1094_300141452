@@ -29,7 +29,7 @@ quickSortByAge(liste, 0, len(liste))
 
 # affichage du tableau trie
 print("Liste triée par âge:", liste)
-#exercice 2 sur la recherche dicotomie 
+#exercice 2 sur la recherche dicotomie -----------------------------------------------
 
 def recherche_dichotomique(liste_tuples, nom_A_recherche):
     # triez la liste par nom pour utiliser la recherche dichotomique
@@ -67,3 +67,35 @@ searchByName("Ryan")
 searchByName("Lilian")
 #pour ulistre si sa fonction prend non un nom qui nexiste pas 
 searchByName("Alice")
+searchByName("Viny")
+
+
+#exercices 3
+
+def printNames(lisdeuples):
+    for nom, _ in lisdeuples:
+        print(nom)
+
+# exemple d'utilisation avec votre liste de tuples
+liste = [("Viny", 34), ("Ryan", 43), ("Tity", 31), ("Antony", 27), ("Calvin", 39), ("Lilian", 27), ("Merlin", 19), ("Rachy", 25)]
+
+# appel de la fonction pour afficher les noms
+print("Liste des noms est :")
+printNames(liste)
+
+def printRecNames(lisdetuples):
+    # Si la liste est vide, on arrête la récursion
+    if not lisdetuples:
+        return
+    # affichage du premier nom du premier tuple
+    print(lisdetuples[0][0])
+    # ici va faire la récursivite avec le reste de la liste
+    printRecNames(lisdetuples[1:])
+
+# exemple d'utilisation avec notre liste de tuples
+liste = [("Viny", 34), ("Ryan", 43), ("Tity", 31), ("Antony", 27), ("Calvin", 39), ("Lilian", 27), ("Merlin", 19), ("Rachy", 25)]
+
+# appel de la fonction pour afficher les noms
+print("Liste des noms est :")
+printRecNames(liste)
+
