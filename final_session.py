@@ -3,29 +3,67 @@ def quickSortByAge(liste, debut, fin):
     if fin - debut < 2:
         return
 
-    # Sélection du pivot (ici, le dernier élément de la liste )
+    # selection du pivot (ici, le dernier element de la liste )
     pivot = liste[fin - 1][1]
     curseur = debut
 
-    # Partition de la liste de tuples
+    # partition de la liste de tuples
     for i in range(debut, fin - 1):
         if liste[i][1] <= pivot:
-            # Échanger les éléments d'indices i et curseur
+            # echanger les elements d'indices i et curseur
             liste[i], liste[curseur] = liste[curseur], liste[i]
             curseur += 1
 
-    # Positionnement définitif du pivot
+    # positionnement definitif du pivot
     liste[fin - 1], liste[curseur] = liste[curseur], liste[fin - 1]
 
-    # Appels récursifs
+    # appels recursifs
     quickSortByAge(liste, debut, curseur)
     quickSortByAge(liste, curseur + 1, fin)
 
-# Exemple d'utilisation avec notre liste de tuples donne dans le fichier exel
+# exemple d'utilisation avec notre liste de tuples donne dans le fichier exel
 liste = [("Viny", 34), ("Ryan", 43), ("Tity", 31), ("Antony", 27), ("Calvin", 39), ("Lilian", 27), ("Merlin", 19), ("Rachy", 25)]
 
-# Appel du tri rapide sur la liste de tuples en fonction de l'âge (deuxième élément)
+# appel du tri rapide sur la liste de tuples en fonction de lage (deuxieme element)
 quickSortByAge(liste, 0, len(liste))
 
-# Affichage du tableau trié
+# affichage du tableau trie
 print("Liste triée par âge:", liste)
+#exercice 2 sur la recherche dicotomie 
+
+def recherche_dichotomique(liste_tuples, nom_A_recherche):
+    # triez la liste par nom pour utiliser la recherche dichotomique
+    liste_triee = sorted(liste_tuples, key=lambda x: x[0])
+
+    # recherche dichotomique
+    gauche, droite = 0, len(liste_triee) - 1
+
+    while gauche <= droite:
+        milieu = (gauche + droite) // 2
+        if liste_triee[milieu][0] == nom_A_recherche:
+            # Renvoie lage correspondant au nom trouver
+            return liste_triee[milieu][1]  
+        elif liste_triee[milieu][0] < nom_A_recherche:
+            gauche = milieu + 1
+        else:
+            droite = milieu - 1
+
+    # S'il  ne pas trouver le nom
+    return None
+
+# exemple d'utilisation avec notre liste de tuples
+liste = [("Viny", 34), ("Ryan", 43), ("Tity", 31), ("Antony", 27), ("Calvin", 39), ("Lilian", 27), ("Merlin", 19), ("Rachy", 25)]
+
+# fonction de recherche par nom
+def searchByName(nom):
+    age = recherche_dichotomique(liste, nom)
+    if age is not None:
+        print(f"L'âge de {nom} est {age}.")
+    else:
+        print(f"Le nom '{nom}' n'a pas été trouvé dans la liste.")
+
+# exemples d'utilisation
+searchByName("Ryan")
+searchByName("Lilian")
+#pour ulistre si sa fonction prend non un nom qui nexiste pas 
+searchByName("Alice")
